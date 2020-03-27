@@ -1,0 +1,22 @@
+{
+  "name": "@4a/enum",
+  "version": "0.1.0",
+  "description": "simple enum type for js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gavinning/enum.git"
+  },
+  "keywords": [
+    "enum"
+  ],
+  "author": "gavinning",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gavinning/enum/issues"
+  },
+  "homepage": "https://github.com/gavinning/enum#readme"
+}
