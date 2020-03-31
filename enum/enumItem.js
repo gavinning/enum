@@ -10,7 +10,7 @@ class EnumItem {
         return require('./enumError').init({
             ...this,
             stack: error.stack,
-            message: message.toString() || this.message.toString(),
+            message: message || this.message,
         })
     }
 
