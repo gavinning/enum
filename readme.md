@@ -25,6 +25,11 @@ DemoEnum.Name.rawValue // "NAME"
 DemoEnum.HomePage.rawValue // "HOMEPAGE"
 
 DemoEnum.has(DemoEnum.HomePage)
+
+DemoEnum.append('OK', 'OK')
+DemoEnum.extend({
+    fail: 'FAIL'
+})
 ```
 
 ```js

@@ -4,29 +4,32 @@ const EnumError = require('./enumError')
 
 class Enum {
 
-    constructor(enums) {
+    // @param {Object} enums
+    constructor(enums = {}) {
         if (!lib.isPlainObject(enums)) {
             throw Error('enums must be a plain object')
         }
-        Object.defineProperty(Enum.prototype, '$createEnum', {
-            writable: false,
-            enumerable: false,
-            value: function $createEnum(enums) {
-                for (const name in enums) {
-                    const key = lib.toUpperCaseFirst(name)
-                    Object.defineProperty(this, key, {
-                        writable: false,
-                        enumerable: true,
-                        value: new EnumItem(key, enums[name]),
-                    })
-                }
-            }
-        })
-        this.$createEnum(enums)
+        this.extend(enums)
     }
 
     has(enumItem) {
         return enumItem === this[enumItem.$key]
+    }
+
+    append(key, value) {
+        key = lib.toUpperCaseFirst(key)
+        Object.defineProperty(this, key, {
+            writable: false,
+            enumerable: true,
+            value: new EnumItem(key, value),
+        })
+        return this[key]
+    }
+
+    extend(enums) {
+        for (const name in enums) {
+            this.append(name, enums[name])
+        }
     }
 
     static get EnumItem() {

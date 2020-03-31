@@ -12,13 +12,24 @@ const ResultMessage = Enum({
 ResultMessage.ErrorToken // {code: 1000, message: "token error"}
 ResultMessage.ExpiredToken // {code: 1001, message: "token expired"}
 
-try {
-    throw ResultMessage.ErrorToken.Error("SomeError")
-}
-catch (err) {
-    if (err instanceof Enum.EnumError) {
-        console.log(err.Encode())
-    }
-    console.log(err)
-    console.log(ResultMessage.ErrorToken)
-}
+// try {
+//     throw ResultMessage.ErrorToken.Error("SomeError")
+// }
+// catch (err) {
+//     if (err instanceof Enum.EnumError) {
+//         console.log(err.Encode())
+//     }
+//     console.log(err)
+//     console.log(ResultMessage.ErrorToken)
+// }
+// console.log('================================')
+
+console.log(
+    ResultMessage.append('lossParameter', Message(2000, 'loss parameter'))
+)
+
+ResultMessage.extend({
+    errorParameter: Message(2001, 'error parameter')
+})
+
+console.log(ResultMessage)

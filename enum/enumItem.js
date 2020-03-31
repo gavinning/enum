@@ -2,21 +2,6 @@ const lib = require('./lib')
 
 class EnumItem {
     constructor(key, rawValue) {
-        this.$createEnumItem(key, rawValue)
-    }
-
-    Error(message) {
-        return require('./enumError').init({
-            ...this,
-            message: message || this.message,
-        })
-    }
-
-    Encode() {
-        return this.$rawValue
-    }
-
-    $createEnumItem(key, rawValue) {
         Object.defineProperty(this, '$key', {
             value: key,
             writable: false,
@@ -30,13 +15,25 @@ class EnumItem {
         if (!lib.isPlainObject(rawValue)) {
             return this.rawValue = rawValue
         }
-        for (const name in rawValue) {
-            Object.defineProperty(this, name, {
+        Object.keys(rawValue).map(key => {
+            Object.defineProperty(this, key, {
                 writable: false,
                 enumerable: true,
-                value: rawValue[name],
+                value: rawValue[key],
             })
-        }
+        })
+    }
+
+    Encode() {
+        return this.$rawValue
+    }
+
+    Error(message) {
+        return require('./enumError').init({ ...this.Encode(), message })
+    }
+
+    static init(key, rawValue) {
+        return new EnumItem(key, rawValue)
     }
 }
 

@@ -11,21 +11,17 @@ class EnumError extends Error {
             enumerable: false,
             value
         })
-        this.$createEnumError(value)
+        Object.keys(value).map(key => {
+            Object.defineProperty(this, key, {
+                writable: false,
+                enumerable: true,
+                value: value[key],
+            })
+        })
     }
 
     Encode() {
         return this.$rawValue
-    }
-
-    $createEnumError(obj) {
-        for (const name in obj) {
-            Object.defineProperty(this, name, {
-                writable: false,
-                enumerable: true,
-                value: obj[name],
-            })
-        }
     }
 
     static init(value) {
