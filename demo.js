@@ -13,7 +13,7 @@ ResultMessage.ErrorToken // {code: 1000, message: "token error"}
 ResultMessage.ExpiredToken // {code: 1001, message: "token expired"}
 
 try {
-    throw ResultMessage.ErrorToken.Error(6666)
+    throw ResultMessage.ErrorToken.Error("SomeError")
 }
 catch (err) {
     if (err instanceof Enum.EnumError) {

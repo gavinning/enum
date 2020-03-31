@@ -1,31 +1,35 @@
 const lib = require('./lib')
 
-class EnumError {
-    constructor(item) {
-        if (!lib.isPlainObject(item)) {
-            throw Error('item must be a plain object')
+class EnumError extends Error {
+    constructor(value) {
+        if (!lib.isPlainObject(value)) {
+            throw Error('value must be a plain object')
         }
-        this.$createEnumError(item)
+        super(value.message || 'SomeError')
+        Object.defineProperty(this, '$rawValue', {
+            writable: false,
+            enumerable: false,
+            value
+        })
+        this.$createEnumError(value)
     }
 
     Encode() {
-        let encoded = { ...this }
-        delete encoded.stack
-        return encoded
+        return this.$rawValue
     }
 
-    $createEnumError(item) {
-        for (const name in item) {
+    $createEnumError(obj) {
+        for (const name in obj) {
             Object.defineProperty(this, name, {
                 writable: false,
                 enumerable: true,
-                value: item[name],
+                value: obj[name],
             })
         }
     }
 
-    static init(item) {
-        return new EnumError(item)
+    static init(value) {
+        return new EnumError(value)
     }
 }
 

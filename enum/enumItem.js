@@ -6,10 +6,8 @@ class EnumItem {
     }
 
     Error(message) {
-        const error = new Error()
         return require('./enumError').init({
             ...this,
-            stack: error.stack,
             message: message || this.message,
         })
     }
