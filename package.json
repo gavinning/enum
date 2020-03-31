@@ -1,10 +1,10 @@
 {
   "name": "@4a/enum",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "simple enum type for js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node demo"
   },
   "repository": {
     "type": "git",

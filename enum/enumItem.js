@@ -7,9 +7,11 @@ class EnumItem {
 
     Error(message) {
         const error = new Error()
-        this.stack = error.stack
-        this.message = message || this.message
-        return this
+        return require('./enumError').init({
+            ...this,
+            stack: error.stack,
+            message: message.toString() || this.message.toString(),
+        })
     }
 
     Encode() {
@@ -32,7 +34,7 @@ class EnumItem {
         }
         for (const name in rawValue) {
             Object.defineProperty(this, name, {
-                writable: true,
+                writable: false,
                 enumerable: true,
                 value: rawValue[name],
             })

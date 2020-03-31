@@ -1,33 +1,5 @@
-Enum type
----
-简单的Enum类型
+const Enum = require('./index')
 
-### Install
-```sh
-npm i @4a/enum
-```
-
-### Usage
-```js
-// ES6
-import Enum from '@4a/enum'
-
-// or Nodejs
-const Enum = require('@4a/enum')
-
-
-const DemoEnum = Enum({
-    name: "NAME",
-    homePage: "HOMEPAGE",
-})
-
-DemoEnum.Name.rawValue // "NAME"
-DemoEnum.HomePage.rawValue // "HOMEPAGE"
-
-DemoEnum.has(DemoEnum.HomePage)
-```
-
-```js
 function Message(code, message) {
     return { code, message }
 }
@@ -41,12 +13,12 @@ ResultMessage.ErrorToken // {code: 1000, message: "token error"}
 ResultMessage.ExpiredToken // {code: 1001, message: "token expired"}
 
 try {
-    throw ResultMessage.ErrorToken.Error()
+    throw ResultMessage.ErrorToken.Error(6666)
 }
-catch(err) {
+catch (err) {
     if (err instanceof Enum.EnumError) {
         console.log(err.Encode())
     }
     console.log(err)
+    console.log(ResultMessage.ErrorToken)
 }
-```

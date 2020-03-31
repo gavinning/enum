@@ -1,5 +1,6 @@
 const lib = require('./lib')
 const EnumItem = require('./enumItem')
+const EnumError = require('./enumError')
 
 class Enum {
 
@@ -14,7 +15,7 @@ class Enum {
                 for (const name in enums) {
                     const key = lib.toUpperCaseFirst(name)
                     Object.defineProperty(this, key, {
-                        writable: true,
+                        writable: false,
                         enumerable: true,
                         value: new EnumItem(key, enums[name]),
                     })
@@ -30,6 +31,10 @@ class Enum {
 
     static get EnumItem() {
         return EnumItem
+    }
+
+    static get EnumError() {
+        return EnumError
     }
 }
 
