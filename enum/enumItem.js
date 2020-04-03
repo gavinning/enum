@@ -29,7 +29,11 @@ class EnumItem {
     }
 
     Error(message) {
-        return require('./enumError').init({ ...this.Encode(), message })
+        const rawValue = this.Encode()
+        return require('./enumError').init({
+            ...rawValue,
+            message: message || rawValue.message
+        })
     }
 
     static init(key, rawValue) {

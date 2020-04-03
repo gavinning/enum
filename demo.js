@@ -33,3 +33,26 @@ ResultMessage.extend({
 })
 
 console.log(ResultMessage)
+console.log()
+console.log('================================')
+console.log()
+
+const assert = require('./assert')
+
+// assert.ok(1 === 2, ResultMessage.ErrorToken.Error())
+// assert.fail(1 === 1, ResultMessage.ErrorToken.Error())
+// assert.equal(1, 2, ResultMessage.ErrorToken.Error())
+// assert.notEqual(1, 1, ResultMessage.ErrorToken.Error())
+// assert.deepEqual([1], [2], ResultMessage.ErrorToken.Error())
+
+try {
+    assert.notDeepEqual([2], [2], ResultMessage.ErrorToken.Error('custom error message'))
+}
+catch(err) {
+    if (err instanceof Enum.EnumError) {
+        console.log(101, err.Encode())
+        console.log(101, err.Encode().code)
+        console.log(101, err.Encode().message)
+        console.log(101, err)
+    }
+}
