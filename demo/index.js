@@ -1,4 +1,4 @@
-const Enum = require('./index')
+const Enum = require('../index')
 
 function Message(code, message) {
     return { code, message }
@@ -37,7 +37,7 @@ console.log()
 console.log('================================')
 console.log()
 
-const assert = require('./assert')
+const assert = require('../assert')
 
 // assert.ok(1 === 2, ResultMessage.ErrorToken.Error())
 // assert.fail(1 === 1, ResultMessage.ErrorToken.Error())
