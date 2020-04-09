@@ -3,6 +3,10 @@ const toString = Object.prototype.toString
 
 module.exports = {
 
+    clone(obj) {
+        return JSON.parse(JSON.stringify(obj))
+    },
+
     toUpperCaseFirst(str) {
         return str.slice(0, 1).toUpperCase() + str.slice(1)
     },

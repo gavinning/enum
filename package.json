@@ -1,10 +1,10 @@
 {
   "name": "@4a/enum",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "description": "simple enum type for js",
   "main": "index.js",
   "scripts": {
-    "test": "node demo"
+    "test": "mocha test/*.spec.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/gavinning/enum/issues"
   },
-  "homepage": "https://github.com/gavinning/enum#readme"
+  "homepage": "https://github.com/gavinning/enum#readme",
+  "devDependencies": {
+    "mocha": "^7.1.1"
+  }
 }

@@ -109,3 +109,6 @@ throw Message.App.Error(message)
 // EnumError实例可以调用Encode方法来进行重新编码
 Message.App.Error(message).Encode()
 ```
+
+### Example
+> npm test

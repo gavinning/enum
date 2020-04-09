@@ -1,6 +1,11 @@
 const lib = require('./lib')
+const EnumError = require('./enumError')
 
 class EnumItem {
+    /**
+     * @param {String} key 
+     * @param {any} rawValue 
+     */
     constructor(key, rawValue) {
         Object.defineProperty(this, '$key', {
             value: key,
@@ -24,18 +29,33 @@ class EnumItem {
         })
     }
 
-    Encode() {
-        return this.$rawValue
+    /**
+     * @param {Object} obj 
+     * @return {Object}
+     */
+    Encode(obj) {
+        if (lib.isPlainObject(this.$rawValue)) {
+            return { ...this.$rawValue, ...obj }
+        }
+        return lib.clone(this.$rawValue)
     }
 
+    /**
+     * @param {String} message 
+     * @return {EnumError}
+     */
     Error(message) {
         const rawValue = this.Encode()
-        return require('./enumError').init({
+        return EnumError.init({
             ...rawValue,
             message: message || rawValue.message
         })
     }
-
+    
+    /**
+     * @param {String} key
+     * @param {any} rawValue
+     */
     static init(key, rawValue) {
         return new EnumItem(key, rawValue)
     }
