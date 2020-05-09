@@ -10,19 +10,19 @@ describe('class Enum test', () => {
             description: 'alipay description'
         })
 
-        assert.ok(App.Name instanceof EnumItem)
-        assert.ok(App.Description instanceof EnumItem)
+        assert.ok(App.name instanceof EnumItem)
+        assert.ok(App.description instanceof EnumItem)
 
-        assert.equal('Alipay', App.Name.rawValue)
-        assert.equal('Alipay', App.Name.$rawValue)
-        assert.equal('alipay description', App.Description.rawValue)
-        assert.equal('alipay description', App.Description.$rawValue)
+        assert.equal('Alipay', App.name.rawValue)
+        assert.equal('Alipay', App.name.$rawValue)
+        assert.equal('alipay description', App.description.rawValue)
+        assert.equal('alipay description', App.description.$rawValue)
 
-        assert.equal('Name', App.Name.$key)
-        assert.equal('Description', App.Description.$key)
+        assert.equal('name', App.name.$key)
+        assert.equal('description', App.description.$key)
 
-        assert.equal('Alipay', App.Name.Encode())
-        assert.equal('alipay description', App.Description.Encode())
+        assert.equal('Alipay', App.name.Encode())
+        assert.equal('alipay description', App.description.Encode())
     })
 
     it('test constructor 2', () => {
@@ -38,14 +38,14 @@ describe('class Enum test', () => {
             }
         })
 
-        assert.equal('Alipay', App.Alipay.name)
-        assert.equal('alipay description', App.Alipay.description)
+        assert.equal('Alipay', App.alipay.name)
+        assert.equal('alipay description', App.alipay.description)
 
-        assert.notEqual(App.Alipay, App.Alipay.Encode())
-        assert.deepEqual(App.Alipay, App.Alipay.Encode())
+        assert.notEqual(App.alipay, App.alipay.Encode())
+        assert.deepEqual(App.alipay, App.alipay.Encode())
     })
 
-    it('test append', () => {
+    it('test $append', () => {
         const App = new Enum({
             wechat: {
                 name: 'Wechat',
@@ -53,19 +53,19 @@ describe('class Enum test', () => {
             }
         })
 
-        App.append('alipay', {
+        App.$append('alipay', {
             name: 'Alipay',
             description: 'alipay description'
         })
 
-        assert.equal('Alipay', App.Alipay.name)
-        assert.equal('alipay description', App.Alipay.description)
+        assert.equal('Alipay', App.alipay.name)
+        assert.equal('alipay description', App.alipay.description)
 
-        assert.notEqual(App.Alipay, App.Alipay.Encode())
-        assert.deepEqual(App.Alipay, App.Alipay.Encode())
+        assert.notEqual(App.alipay, App.alipay.Encode())
+        assert.deepEqual(App.alipay, App.alipay.Encode())
     })
 
-    it('test extend', () => {
+    it('test $extend', () => {
         const App = new Enum({
             baidu: {
                 name: 'Baidu',
@@ -73,7 +73,7 @@ describe('class Enum test', () => {
             }
         })
 
-        App.extend({
+        App.$extend({
             alipay: {
                 name: 'Alipay',
                 description: 'alipay description'
@@ -85,10 +85,10 @@ describe('class Enum test', () => {
             }
         })
 
-        assert.equal('Alipay', App.Alipay.name)
-        assert.equal('alipay description', App.Alipay.description)
+        assert.equal('Alipay', App.alipay.name)
+        assert.equal('alipay description', App.alipay.description)
 
-        assert.notEqual(App.Alipay, App.Alipay.Encode())
-        assert.deepEqual(App.Alipay, App.Alipay.Encode())
+        assert.notEqual(App.alipay, App.alipay.Encode())
+        assert.deepEqual(App.alipay, App.alipay.Encode())
     })
 })

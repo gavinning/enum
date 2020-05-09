@@ -21,15 +21,13 @@ const DemoEnum = Enum({
     homePage: "HOMEPAGE",
 })
 
-DemoEnum.Name.rawValue // "NAME"
-DemoEnum.HomePage.rawValue // "HOMEPAGE"
+DemoEnum.name.rawValue // "NAME"
+DemoEnum.homePage.rawValue // "HOMEPAGE"
 
-DemoEnum.has(DemoEnum.HomePage)
+DemoEnum.$has(DemoEnum.homePage)
 
-DemoEnum.append('OK', 'OK')
-DemoEnum.extend({
-    fail: 'FAIL'
-})
+DemoEnum.$append('OK', 'OK')
+DemoEnum.$extend({ fail: 'FAIL' })
 ```
 
 ```js
@@ -42,11 +40,11 @@ const ResultMessage = Enum({
     expiredToken: Message(1001, "token expired"),
 })
 
-ResultMessage.ErrorToken // {code: 1000, message: "token error"}
-ResultMessage.ExpiredToken // {code: 1001, message: "token expired"}
+ResultMessage.errorToken // {code: 1000, message: "token error"}
+ResultMessage.expiredToken // {code: 1001, message: "token expired"}
 
 try {
-    throw ResultMessage.ErrorToken.Error()
+    throw ResultMessage.errorToken.Error()
 }
 catch(err) {
     if (err instanceof Enum.EnumError) {
@@ -60,14 +58,14 @@ catch(err) {
 ```js
 const assert = require('@4a/enum/assert')
 
-// assert.ok(1 === 2, ResultMessage.ErrorToken.Error())
-// assert.fail(1 === 1, ResultMessage.ErrorToken.Error())
-// assert.equal(1, 2, ResultMessage.ErrorToken.Error())
-// assert.notEqual(1, 1, ResultMessage.ErrorToken.Error())
-// assert.deepEqual([1], [2], ResultMessage.ErrorToken.Error())
+// assert.ok(1 === 2, ResultMessage.errorToken.Error())
+// assert.fail(1 === 1, ResultMessage.errorToken.Error())
+// assert.equal(1, 2, ResultMessage.errorToken.Error())
+// assert.notEqual(1, 1, ResultMessage.errorToken.Error())
+// assert.deepEqual([1], [2], ResultMessage.errorToken.Error())
 
 try {
-    assert.notDeepEqual([2], [2], ResultMessage.ErrorToken.Error('custom error message'))
+    assert.notDeepEqual([2], [2], ResultMessage.errorToken.Error('custom error message'))
 }
 catch(err) {
     if (err instanceof Enum.EnumError) {
@@ -97,18 +95,25 @@ const obj = {a: 1, b: 2, app: 3}
 const Message = Enum(obj)
 
 
-// Enum类型enumItem首字母强制大写
-Message.App
-
-
 // EnumError
 // EnumItem实例可以直接调用Error方法创建EnumError实例，message参数可选
 // 如果EnumItem没有message属性，则必须传递message参数
-throw Message.App.Error(message)
+throw Message.app.Error(message)
 
 // EnumError实例可以调用Encode方法来进行重新编码
-Message.App.Error(message).Encode()
+Message.app.Error(message).Encode()
 ```
 
 ### Example
 > npm test
+
+
+### Vue
+``vue.config.js``配置中注意配置``transpileDependencies``属性，让webpack可以编译``@4a/enum``  
+```js
+// Example
+// 兼容低版本浏览器  
+transpileDependencies: [
+    /[/\\]node_modules[/\\]@4a\/enum[/\\]/,
+]
+```
