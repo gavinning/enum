@@ -51,7 +51,23 @@ class EnumItem {
             message: message || rawValue.message
         })
     }
-    
+
+    isEqual(obj) {
+        return obj === this.$rawValue
+    }
+
+    isNotEqual(obj) {
+        return obj !== this.$rawValue
+    }
+
+    isDeepEqual(obj) {
+        return JSON.stringify(obj) === JSON.stringify(this.$rawValue)
+    }
+
+    isNotDeepEqual(obj) {
+        return JSON.stringify(obj) !== JSON.stringify(this.$rawValue)
+    }
+
     /**
      * @param {String} key
      * @param {any} rawValue

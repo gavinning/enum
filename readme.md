@@ -76,6 +76,19 @@ catch(err) {
     }
 }
 ```
+```js
+const APP = Enum({
+    name: 'wechat',
+    version: '1.0.0',
+    demo: { foo: 'bar' }
+})
+
+APP.version.isEqual('1.0.0') // true
+APP.version.isNotEqual('1.0.0') // false
+
+APP.demo.isDeepEqual({ foo: 'bar' }) // true
+APP.demo.isNotDeepEqual({ foo: 'bar' }) // false
+```
 
 ### Notes
 ```js

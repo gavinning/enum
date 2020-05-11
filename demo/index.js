@@ -12,27 +12,16 @@ const ResultMessage = Enum({
 ResultMessage.ErrorToken // {code: 1000, message: "token error"}
 ResultMessage.ExpiredToken // {code: 1001, message: "token expired"}
 
-// try {
-//     throw ResultMessage.ErrorToken.Error("SomeError")
-// }
-// catch (err) {
-//     if (err instanceof Enum.EnumError) {
-//         console.log(err.Encode())
-//     }
-//     console.log(err)
-//     console.log(ResultMessage.ErrorToken)
-// }
-// console.log('================================')
-
 console.log(
-    ResultMessage.append('lossParameter', Message(2000, 'loss parameter'))
+    ResultMessage.$append('lossParameter', Message(2000, 'loss parameter'))
 )
 
-ResultMessage.extend({
+ResultMessage.$extend({
     errorParameter: Message(2001, 'error parameter')
 })
 
 console.log(ResultMessage)
+console.log(666, ResultMessage.errorParameter, ResultMessage.errorParameter.$rawValue)
 console.log()
 console.log('================================')
 console.log()
@@ -56,3 +45,18 @@ catch(err) {
         console.log(101, err)
     }
 }
+
+
+const APP = Enum({
+    name: 'wechat',
+    version: '1.0.0',
+    demo: { foo: 'bar' }
+})
+
+console.log(
+    APP.version.isEqual('1.0.0'), // true
+    APP.version.isNotEqual('1.0.0'), // false
+
+    APP.demo.isDeepEqual({ foo: 'bar' }), // true
+    APP.demo.isNotDeepEqual({ foo: 'bar' }), // false
+)

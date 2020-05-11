@@ -1,6 +1,6 @@
 {
   "name": "@4a/enum",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "simple enum type for js",
   "main": "index.js",
   "scripts": {

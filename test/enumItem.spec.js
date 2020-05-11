@@ -74,4 +74,21 @@ describe('class EnumItem test', () => {
         assert.equal(2, err.b)
         assert.equal('error message', err.message)
     })
+
+    it('test isEqual, isNotEqual', () => {
+        const rawValue = { a: 1, b: 2 }
+        const enumItem = new EnumItem('app', rawValue)
+
+        assert.ok(enumItem.isEqual(rawValue))
+        assert.ok(!enumItem.isNotEqual(rawValue))
+    })
+
+    it('test isDeepEqual, isNotDeepEqual', () => {
+        const rawValue = { a: 1, b: 2 }
+        const copyValue = { a: 1, b: 2 }
+        const enumItem = new EnumItem('app', rawValue)
+
+        assert.ok(enumItem.isDeepEqual(rawValue))
+        assert.ok(!enumItem.isNotDeepEqual(copyValue))
+    })
 })
